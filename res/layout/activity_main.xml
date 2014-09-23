@@ -114,4 +114,22 @@
             android:text="Button" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/linearLayout1"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="346dp"
+            android:layout_height="208dp"
+            android:inputType="number"
+            android:textSize="40sp" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
+
 </RelativeLayout>
