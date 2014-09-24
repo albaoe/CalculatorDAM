@@ -4,5 +4,22 @@
     <string name="app_name">CalculatorDAM</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="Number1">1</string>
+    <string name="Number2">2</string>
+    <string name="Number3">3</string>
+    <string name="Number4">4</string>
+    <string name="Number5">5</string>
+    <string name="Number6">6</string>
+    <string name="Number7">7</string>
+    <string name="Number8">8</string>
+    <string name="Number9">9</string>
+    <string name="Number0">0</string>
+    <string name="Symboladd">&#43;</string>
+    <string name="Symbolsubtract">&#45;</string>
+    <string name="Symbolmultiply">x</string>
+    <string name="Symboldivide">&#47;</string>
+    <string name="Symboldot">&#46;</string>
+    <string name="Symbolequal">&#61;</string>
+    <string name="Delete">Del</string>
 
 </resources>
