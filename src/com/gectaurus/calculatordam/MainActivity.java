@@ -48,6 +48,97 @@ public class MainActivity extends Activity {
 				bottomtext.setText(bottomtext.getText() + "0");	
 			}
 		});
+        button1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "1");	
+			}
+		});
+        button2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "2");	
+			}
+		});
+        button3.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "3");	
+			}
+		});
+        button4.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "4");	
+			}
+		});
+        button5.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "5");	
+			}
+		});
+        button6.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "6");	
+			}
+		});
+        button7.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "7");	
+			}
+		});
+        button8.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "8");	
+			}
+		});
+        button9.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + "9");	
+			}
+		});
+        buttondot.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				bottomtext.setText(bottomtext.getText() + ",");	
+			}
+		});
+        buttondel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				int length = bottomtext.getText().length();
+				if (length > 0) {
+				    bottomtext.getText().delete(length - 1, length);
+				}					
+			}
+		});
     }
 
 
