@@ -84,14 +84,24 @@ public class Calculator {
 	}
 	
 	public static BigDecimal calculate(String input) {
-		boolean neg = input.startsWith("-");
-		if (neg) input = input.substring(1);
-		for (String op : OPERATORS.keySet()) {
-			input = input.replace(op, " " + op + " ");
-		}
-		if(neg) input = "-" + input;
 		
-		String[] rpn = infixToRPN(input.split(" "));
+		String infix = "";
+		
+		for (int i = 0, nc=0; i<input.length(); i++) {
+			char c = input.charAt(i);
+			if ((c >= '0' && c<='9') 
+					|| c == '.' 
+					|| (c=='-' && nc ==0)) {
+				nc++;
+				infix += c;
+			}  else {
+				nc = 0;
+				infix += " " + c + " ";
+			}
+		}
+		
+		
+		String[] rpn = infixToRPN(infix.split(" "));
 		
 		System.out.println(Arrays.toString(rpn));
 		
