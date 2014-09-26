@@ -74,7 +74,9 @@ public class MainActivity extends Activity {
 							number = "0";
 						} else {
 							ac = ac.substring(0, ac.length()-1);
-							if (number.length() == 0) {
+							if (number.length()==1) {
+								number = "";
+							}else if (number.length() == 0) {
 								if (endsWithNumber(ac)) {
 									for(int i = ac.length()-1; i>=0; i--){
 										char ch = ac.charAt(i);
@@ -86,7 +88,7 @@ public class MainActivity extends Activity {
 									}
 								}
 							} else {
-								number = ac.substring(0, ac.length()-1);
+								number = number.substring(0, number.length()-1);
 							}
 						}
 						break;
