@@ -122,7 +122,7 @@ public class Calculator {
 			} else if (o.equals("x")) {
 				stack.push(n1.multiply(n2));
 			} else if(o.equals("/")) {
-				stack.push(n1.divide(n2, RoundingMode.DOWN));
+				stack.push(n1.divide(n2, 15,RoundingMode.DOWN));
 			}
 		}
 		

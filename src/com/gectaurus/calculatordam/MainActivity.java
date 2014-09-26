@@ -1,6 +1,7 @@
 package com.gectaurus.calculatordam;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
@@ -106,8 +108,16 @@ public class MainActivity extends Activity {
 						break;
 					case R.id.buttonEquals:
 						if (endsWithNumber(ac)) {
-							ac = Calculator.calculate(ac).toString();
-							number = ac;
+							try {
+								ac = String.valueOf(Calculator.calculate(ac).doubleValue());
+								number = ac;
+							} catch(Exception e) {
+								AlertDialog.Builder a = new AlertDialog.Builder(MainActivity.this);
+								a.setTitle("Error");
+								a.setMessage("Incorrect Expression");
+								a.setPositiveButton("OK", null);
+								a.show();
+							}
 						}
 						break;
 				}
