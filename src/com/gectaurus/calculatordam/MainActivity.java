@@ -1,13 +1,27 @@
 package com.gectaurus.calculatordam;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Stack;
+
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 
 public class MainActivity extends Activity {
@@ -19,128 +33,164 @@ public class MainActivity extends Activity {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        final EditText toptext = (EditText) findViewById(R.id.editText1);
-    	final EditText bottomtext = (EditText) findViewById(R.id.EditText01);
+    	final TextView bottomtext = (TextView) findViewById(R.id.textView1);
 
-    	final Button button0 = (Button) findViewById(R.id.Button02);
-    	final Button button1 = (Button) findViewById(R.id.button11);
-    	final Button button2 = (Button) findViewById(R.id.button10);
-    	final Button button3 = (Button) findViewById(R.id.button9);
-    	final Button button4 = (Button) findViewById(R.id.button7);
-    	final Button button5 = (Button) findViewById(R.id.button6);
-    	final Button button6 = (Button) findViewById(R.id.button5);
-    	final Button button7 = (Button) findViewById(R.id.button1);
-    	final Button button8 = (Button) findViewById(R.id.button2);
-    	final Button button9 = (Button) findViewById(R.id.button3);
-    	final Button buttondot = (Button) findViewById(R.id.Button01);
-    	final Button buttondel = (Button) findViewById(R.id.Button03);
-    	final Button buttonadd = (Button) findViewById(R.id.Button04);
-    	final Button buttonsubtract = (Button) findViewById(R.id.button12);
-    	final Button buttonmultiply = (Button) findViewById(R.id.button8);
-    	final Button buttondivide = (Button) findViewById(R.id.button4);
-    	final Button buttonequal = (Button) findViewById(R.id.button13);
-        
-        button0.setOnClickListener(new OnClickListener() {
-			
+    	
+    	bottomtext.setText("0");
+    	
+    	OnClickListener ocl = new OnClickListener() {
+    		String number= "0";
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "0");	
+				Button b = (Button) v;
+				String ac = bottomtext.getText().toString();
+				char c = 0;
+				switch(b.getId()){
+					case R.id.button0:
+						c = '0';
+						break;
+					case R.id.button1:
+						c = '1';
+						break;
+					case R.id.button2:
+						c = '2';
+						break;
+					case R.id.button3:
+						c = '3';
+						break;
+					case R.id.button4:
+						c = '4';
+						break;
+					case R.id.button5:
+						c = '5';
+						break;
+					case R.id.button6:
+						c = '6';
+						break;
+					case R.id.button7:
+						c = '7';
+						break;
+					case R.id.button8:
+						c = '8';
+						break;
+					case R.id.button9:
+						c = '9';
+						break;
+					case R.id.buttonDot:
+						c = '.';
+						break;
+					case R.id.buttonDel:
+						if (ac.length()==1) {
+							ac = "0";
+							number = "0";
+						} else {
+							ac = ac.substring(0, ac.length()-1);
+							if (number.length() == 0) {
+								if (endsWithNumber(ac)) {
+									for(int i = ac.length()-1; i>=0; i--){
+										char ch = ac.charAt(i);
+										if ( (ch>='0' && ch<='9') 
+												|| ch=='.' 
+												|| (ch=='-' && i ==0)) {
+											number = ch + number;
+										}
+									}
+								}
+							} else {
+								number = ac.substring(0, ac.length()-1);
+							}
+						}
+						break;
+					case R.id.buttonClear:
+						ac = "0";
+						number="0";
+						break;
+					case R.id.buttonAdd:
+						c='+';
+						break;
+					case R.id.buttonSubtract:
+						c='-';
+						break;
+					case R.id.buttonMultiply:
+						c='x';
+						break;
+					case R.id.buttonDivide:
+						c = '/';
+						break;
+					case R.id.buttonEquals:
+						if (endsWithNumber(ac)) {
+							ac = Calculator.calculate(ac).toString();
+							number = ac;
+						}
+						break;
+				}
+				
+				if (c!=0) {
+					if (c=='0'){
+						if (!number.equals("0")) {
+							number += c;
+							ac += c;
+						}
+					}else if (c>='1' && c<='9') {
+						if (number.equals("0")) {
+							ac = number = String.valueOf(c);
+						} else {
+							number += c;
+							ac += c;
+						}
+					} else if(c == '.') {
+						if (number.isEmpty()) {
+							number = "0.";
+							ac += "0.";
+						} else if(!number.contains(".")) {
+							number += c;
+							ac += c;
+						}
+					} else if (c == '-' && ac.equals("0")){
+						ac="-";
+						number="-";
+					} else if (c=='-' && number.isEmpty() && !(ac.endsWith("+") || ac.endsWith("-"))){
+						ac+="-";
+						number="-";
+					}else {
+						if (!endsWithNumber(ac)) {
+							ac = ac.substring(0, ac.length()-1) + c;
+						} else if (!ac.endsWith(String.valueOf(c))){
+							ac += c;
+						}
+						number = "";
+					}
+				}
+				
+				bottomtext.setText(ac);
+				
 			}
-		});
-        button1.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "1");	
-			}
-		});
-        button2.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "2");	
-			}
-		});
-        button3.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "3");	
-			}
-		});
-        button4.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "4");	
-			}
-		});
-        button5.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "5");	
-			}
-		});
-        button6.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "6");	
-			}
-		});
-        button7.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "7");	
-			}
-		});
-        button8.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "8");	
-			}
-		});
-        button9.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + "9");	
-			}
-		});
-        buttondot.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				bottomtext.setText(bottomtext.getText() + ",");	
-			}
-		});
-        buttondel.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				int length = bottomtext.getText().length();
-				if (length > 0) {
-				    bottomtext.getText().delete(length - 1, length);
-				}					
-			}
-		});
+    	};
+    	
+    	ViewGroup root = (ViewGroup) findViewById(R.id.Root);
+    	
+    	addListeners(root, ocl);
     }
 
+    static boolean endsWithNumber(String s) {
+    	if (s.isEmpty()) return false;
+    	String last = s.substring(s.length()-1);
+    	return Character.isDigit(last.charAt(0)) || last.equals(".");
+    }
+
+    
+   
+
+    private void addListeners(ViewGroup v, OnClickListener ocl) {
+    	for (int i = 0; i < v.getChildCount(); i++) {
+    		View b = v.getChildAt(i);
+    		if (b instanceof ViewGroup) {
+    			addListeners((ViewGroup) b, ocl);
+    		} else if(b instanceof Button) {
+    			((Button) b).setOnClickListener(ocl);
+    		}
+    	}
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -20,6 +20,7 @@
     <string name="Symboldivide">&#47;</string>
     <string name="Symboldot">&#46;</string>
     <string name="Symbolequal">&#61;</string>
-    <string name="Delete">Del</string>
+    <string name="SymbolAC">Clear</string>
+    <string name="Backspace">Del</string>
 
 </resources>
