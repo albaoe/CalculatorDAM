@@ -15,19 +15,27 @@
         android:id="@+id/row1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight=".12" >
+        android:layout_weight=".12"
+        android:scrollbars="horizontal" >
  
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
             android:gravity="right"
-            android:maxLines="1"
+            android:lines="1"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:scrollHorizontally="true"
+            android:scrollbars="horizontal"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
             android:text="0"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="40sp" />
+
     </LinearLayout>
  
     <LinearLayout

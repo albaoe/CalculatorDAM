@@ -1,8 +1,11 @@
 package com.gectaurus.calculatordam;
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +25,7 @@ public class MainActivity extends Activity {
         
     	final TextView bottomtext = (TextView) findViewById(R.id.textView1);
 
-    	
+    	bottomtext.setMovementMethod(new ScrollingMovementMethod());
     	bottomtext.setText("0");
     	
     	OnClickListener ocl = new OnClickListener() {
@@ -109,7 +112,8 @@ public class MainActivity extends Activity {
 					case R.id.buttonEquals:
 						if (endsWithNumber(ac)) {
 							try {
-								ac = String.valueOf(Calculator.calculate(ac).doubleValue());
+								DecimalFormat df = new DecimalFormat("0.#############");
+								ac = df.format(Calculator.calculate(ac).doubleValue());
 								number = ac;
 							} catch(Exception e) {
 								AlertDialog.Builder a = new AlertDialog.Builder(MainActivity.this);
